@@ -2,17 +2,34 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from controller.UserController import user_router
 from controller.PredictController import predict_router
+from controller.ProductController import product_router
+from database import database
+
 app = FastAPI()
-# Cấu hình middleware CORS để cho phép các yêu cầu từ nguồn gốc khác nhau
+
+@app.on_event("startup")
+async def startup():
+    try:
+        await database.connect()
+        print("Database connected successfully.")
+    except Exception as e:
+        print(f"Database connection failed: {e}")
+
+@app.on_event("shutdown")
+async def shutdown():
+    await database.disconnect()
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  #
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["GET", "POST", "PUT", "DELETE"],
 )
-# Đăng ký các router
+
+# Register routers
 app.include_router(user_router, prefix="/users")
 app.include_router(predict_router, prefix="/predict")
+app.include_router(product_router, prefix="/product")
 
 if __name__ == "__main__":
     import uvicorn

@@ -7,3 +7,8 @@ class Product(BaseModel):
     image: str
     product_name: str
     price: int
+class ProductCreation(BaseModel):
+    label_id: int
+    image: str
+    product_name: str
+    price: int

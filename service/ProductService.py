@@ -1,13 +1,16 @@
 from typing import List
 from model.ProductModel import ProductModel
-from dao.ProductDao import getAllProduct, createProduct, updateProductById, delProductById
+from dao.ProductDao import getAllProduct, createProduct, updateProductById, delProductById, get_products_by_label_id
 from type.ProductType import ProductResponse, ProductRequest
 
 class ProductService:
     async def getProducts(self) -> List[ProductModel]:
         products = await getAllProduct()
         return [ProductModel(**product) for product in products]
-
+    
+    async def getProducts(self) -> List[ProductModel]:
+        products = await getAllProduct()
+        return [ProductModel(**product) for product in products]
     async def createProduct(self, product: ProductRequest) -> ProductResponse:
         created_product = await createProduct(product)
         return ProductResponse(**created_product)
@@ -19,3 +22,4 @@ class ProductService:
 
     async def delProductById(self, id: int) -> bool:
         return await delProductById(id)
+

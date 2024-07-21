@@ -13,6 +13,7 @@ class ProductRequest(BaseModel):
 
 class ProductResponse(BaseModel):
     id: int
+    label_id: int
     image: str
     price: int
     product_name: str

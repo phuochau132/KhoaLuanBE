@@ -46,3 +46,13 @@ async def updateProductById(id, new_data):
     query = select(product_table).where(product_table.c.id == id)
     updated_product = await database.fetch_one(query=query)
     return dict(updated_product)
+
+
+async def get_products_by_label_id(label_id):
+    print(label_id)
+    query = select(product_table).where(product_table.c.label_id == label_id)
+    result = await database.fetch_one(query=query)
+    print(result)
+    if not result:
+        return None
+    return dict(result)

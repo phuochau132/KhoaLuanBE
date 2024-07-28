@@ -25,7 +25,7 @@ def decode_base64_to_image(base64_string):
         if image.mode == 'RGBA':
             image = image.convert('RGB')
         # Chuyển đổi thành mảng numpy và chuẩn hóa giá trị pixel
-        image_array = np.array(image) / 255.0
+        image_array = np.array(image).astype('float32') / 255.0
         return image_array
     except Exception as e:
         print(f"Error decoding base64: {e}")
@@ -40,8 +40,7 @@ class PredictService:
     
     async def predict(self, image: str) -> ProductModel:
         image = decode_base64_to_image(image)
-        image_array = np.array(image)
-        label = self.model_inference.predict(image_array)
+        label = self.model_inference.predict(image )
         print(label)
         product = await get_products_by_label_id(label)
         if not product:

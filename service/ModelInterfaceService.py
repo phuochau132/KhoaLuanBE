@@ -43,7 +43,7 @@ class ModelInference:
             current_file = Path(__file__).resolve()
             base_dir = current_file.parent.parent  # Đây là thư mục gốc của dự án
             # Đường dẫn tới file model_checkpoint.h5
-            model_path = base_dir / "static" / "vit_model"
+            model_path = base_dir / "static" / "vit_v2"
             try:
                 cls._instance.model = tf.keras.models.load_model(model_path)
                 print("Model loaded successfully.")
@@ -59,9 +59,9 @@ class ModelInference:
             print(image_array.shape)
             plt.imshow(image_array)
             plt.axis('off') 
-            plt.savefig('temp_image.png')  
+            plt.savefig('temp_image2.png')  
             plt.close() 
-            output = self.model([image_array])
+            output = self.model(np.expand_dims(image_array, axis=0))
             print(f"Model output: {output}")
             label = self.labels[np.argmax(output)]
             print(f"Predicted label: {label}")

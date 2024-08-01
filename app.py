@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from controller.UserController import user_router
 from controller.PredictController import predict_router
 from controller.ProductController import product_router
+from controller.OrderController import order_router
 from database import database
 
 app = FastAPI()
@@ -30,6 +31,7 @@ app.add_middleware(
 app.include_router(user_router, prefix="/users")
 app.include_router(predict_router, prefix="/predict")
 app.include_router(product_router, prefix="/product")
+app.include_router(order_router, prefix="/orders", tags=["orders"])
 
 if __name__ == "__main__":
     import uvicorn

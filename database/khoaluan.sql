@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 17, 2024 at 01:58 AM
+-- Generation Time: Aug 01, 2024 at 04:05 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -20,6 +20,81 @@ SET time_zone = "+00:00";
 --
 -- Database: `khoaluan`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order`
+--
+
+CREATE TABLE `order` (
+  `id` int(11) NOT NULL,
+  `customer_name` varchar(100) NOT NULL,
+  `address` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `phone_number` varchar(11) NOT NULL,
+  `order_date` date NOT NULL,
+  `total` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `order`
+--
+
+INSERT INTO `order` (`id`, `customer_name`, `address`, `email`, `phone_number`, `order_date`, `total`) VALUES
+(1, 'John Doe', '123', 'john.doe@example.com', '123456789', '2024-07-29', 150),
+(2, 'John Doe', '123', 'john.doe@example.com', '123456789', '2024-07-29', 150),
+(3, 'John Doe', '123', 'john.doe@example.com', '123456789', '2024-07-29', 150),
+(4, 'John Doe', '123', 'john.doe@example.com', '123456789', '2024-07-29', 150),
+(5, 'John Doe', '123', 'john.doe@example.com', '123456789', '2024-07-29', 150),
+(6, 'Michael Riven', '0', 'hau123@gmail.com', '979574301', '2024-07-29', 8600),
+(7, 'Michael Riven', '0', 'hau123@gmail.com', '979574301', '2024-07-29', 27600),
+(8, 'Michael Riven', '0', 'hau123@gmail.com', '979574301', '2024-07-29', 27600),
+(9, 'Michael Riven', '0', 'hau123@gmail.com', '979574301', '2024-07-29', 27600),
+(10, 'Michael Riven', '0', 'hau12344@gmail.com', '979574301', '2024-07-29', 13800),
+(11, 'Michael Riven', '0', 'hau123@gmail.com', '979574301', '2024-07-29', 13800),
+(12, 'Michael Riven', '0', 'hau123@gmail.com', '979574301', '2024-07-29', 13800),
+(13, 'Michael Riven', '0', 'hau12344@gmail.com', '1231231', '2024-07-29', 13800),
+(14, 'asda asd', '0', 'hau123@gmail.com', '1231231', '2024-07-29', 13800),
+(15, 'Michael Riven', '0', 'hau123@gmail.com', '979574301', '2024-07-29', 70000),
+(16, 'Michael Riven', '0', 'hau123@gmail.com', '979574301', '2024-07-29', 13800);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order_detail`
+--
+
+CREATE TABLE `order_detail` (
+  `id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `order_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `order_detail`
+--
+
+INSERT INTO `order_detail` (`id`, `product_id`, `quantity`, `order_id`) VALUES
+(0, 1, 2, 3),
+(0, 2, 1, 3),
+(0, 1, 2, 4),
+(0, 2, 1, 4),
+(0, 1, 2, 5),
+(0, 2, 1, 5),
+(0, 11, 2, 6),
+(0, 1, 1, 6),
+(0, 16, 2, 7),
+(0, 16, 2, 8),
+(0, 16, 2, 9),
+(0, 16, 1, 10),
+(0, 16, 1, 11),
+(0, 16, 1, 12),
+(0, 16, 1, 13),
+(0, 16, 1, 14),
+(0, 7, 2, 15),
+(0, 16, 1, 16);
 
 -- --------------------------------------------------------
 
@@ -71,6 +146,12 @@ INSERT INTO `product` (`id`, `label_id`, `image`, `price`, `product_name`) VALUE
 --
 
 --
+-- Indexes for table `order`
+--
+ALTER TABLE `order`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `product`
 --
 ALTER TABLE `product`
@@ -79,6 +160,12 @@ ALTER TABLE `product`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `order`
+--
+ALTER TABLE `order`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `product`

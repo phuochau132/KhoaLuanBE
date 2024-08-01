@@ -17,3 +17,9 @@ class ProductResponse(BaseModel):
     image: str
     price: int
     product_name: str
+class ProductOrderResponse(BaseModel):
+    label_id: int
+    image: str
+    price: int
+    product_name: str
+
